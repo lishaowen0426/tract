@@ -55,7 +55,7 @@ pub fn translate_inference_fact(
     Ok(fact)
 }
 
-#[cfg(target_family="wasm")]
+#[cfg(any(target_family = "wasm", target_os = "hermit"))]
 fn extend_bytes_from_path(buf: &mut Vec<u8>, p: impl AsRef<Path>) -> TractResult<()> {
     use std::io::BufRead;
 

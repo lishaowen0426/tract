@@ -10,6 +10,7 @@ use std::{env, ffi, fs, path};
 mod apple_amx_instructions;
 
 fn var(k: &str) -> String {
+    println!("read env var {k}");
     env::var(k).unwrap()
 }
 
@@ -244,7 +245,8 @@ fn preprocess_file(
     needs_pragma: bool,
 ) {
     println!("cargo:rerun-if-changed={}", template.as_ref().to_string_lossy());
-    let family = var("CARGO_CFG_TARGET_FAMILY");
+    //let family = var("CARGO_CFG_TARGET_FAMILY");
+    let family = "unix";
     let os = var("CARGO_CFG_TARGET_OS");
     let arch = var("CARGO_CFG_TARGET_ARCH");
     // We also check to see if we're on a windows host, if we aren't, we won't be
